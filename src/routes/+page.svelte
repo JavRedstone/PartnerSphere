@@ -1,6 +1,6 @@
 <script lang="ts">
     import Button, { Label } from "@smui/button";
-    import logoShort from "$lib/assets/logo_short.svg";
+    import bg from "$lib/assets/background.png";
 </script>
 <style>
     .partner-sphere-container {
@@ -10,7 +10,7 @@
         padding: 2rem;
         width: 100vw;
         height: 100vh;
-        background: linear-gradient(135deg, black, rgba(0, 0, 0, 0.75), rgba(33, 150, 243, 0.75), rgba(233, 30, 99, 0.75), rgb(233, 30, 99)), url('background.png');
+        background: linear-gradient(135deg, black, rgba(0, 0, 0, 0.75), rgba(33, 150, 243, 0.75), rgba(233, 30, 99, 0.75), rgb(233, 30, 99));
     }
     .partner-sphere-title {
         font-size: 4rem;
@@ -35,3 +35,4 @@
         <Label>Get Started</Label>
     </Button>
 </div>
+<img src={bg} alt="background" style="z-index: -1; position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; object-position: center;" />
