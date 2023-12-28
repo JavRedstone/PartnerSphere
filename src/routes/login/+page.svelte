@@ -24,7 +24,7 @@
                         let userDoc: DocumentReference<DocumentData, DocumentData> = getFirestoreDoc('users', credential.user.uid);
                         setDoc(userDoc, { email: credential.user.email, uid: credential.user.uid, emailVerified: credential.user.emailVerified }).then(
                             () => {    
-                                window.location.href = '/';
+                                window.location.href = '/catalog';
                                 sendSnackbarMessage('Logged in successfully. Welcome back!');
                             }
                         );

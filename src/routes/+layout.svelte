@@ -54,7 +54,8 @@
 	import { DrawerListItem } from '$lib/classes/structs/DrawerListItem';
     let drawerListItems: DrawerListItem[] = [
         new DrawerListItem('Home', '/', 'home'),
-        new DrawerListItem('Catalog', '/catalog', 'list_alt')
+        new DrawerListItem('Catalog', '/catalog', 'list_alt'),
+        new DrawerListItem('Sphere', '/sphere', 'language')
     ];
     let listActive: DrawerListItem = drawerListItems[0];
     
@@ -64,15 +65,25 @@
     import logo from '$lib/assets/logo.svg';
 
     // Sign in
-    import Snackbar, { Label as SnackbarLabel, Actions as SnackbarActions } from '@smui/snackbar';
+    import Snackbar, { Label as SnackbarLabel, Actions as SnackbarActions, Label } from '@smui/snackbar';
     let snackbar: Snackbar;
     let snackbarMessage: string = '';
 
     import { onMount } from 'svelte';
 	import { auth, getFirestoreDoc } from '$lib/firebase/firebase';
 	import { authHandlers, authStore } from '$lib/stores/authStore';
+    import { getFirestoreCollection } from "$lib/firebase/firebase";
+    import { QuerySnapshot, getDocs, type DocumentData, query, where } from "firebase/firestore";
 	import type { User } from 'firebase/auth';
+    import { partners } from '$lib/stores/partnerStore';
+    import type { Partner } from '$lib/classes/structs/Partner';
+    import Button from '@smui/button';
+    
+    let loc = null;
+
     onMount(() => {
+        loc = window.location;
+
         auth.onAuthStateChanged(
             (user: User | null) => {
                 if (user != null) {
@@ -85,6 +96,26 @@
                             userDoc: getFirestoreDoc('users', user.uid)
                         }
                     });
+
+                    let partnersCollection = getFirestoreCollection('partners');
+                    partners.set([]);
+                    getDocs(query(partnersCollection, where("uid", "==", $authStore.currentUser.uid))).then(
+                        (querySnapshot: QuerySnapshot<DocumentData, DocumentData>) => {
+                            querySnapshot.forEach(
+                                (doc) => {
+                                    partners.update(
+                                        (currentPartners) => {
+                                            return [...currentPartners, doc.data() as Partner];
+                                        }
+                                    );
+                                }
+                            );
+                        }
+                    ).catch(
+                        (error: any) => {
+                            sendSnackbarMessage('Error getting workshops. Please try again later.');
+                        }
+                    );
                 } else {
                     // No user is signed in.
                 }
@@ -164,8 +195,17 @@
             </TopAppBarRow>
         </TopAppBar>
 
-        <div style="margin-top: 3rem; padding: 2rem;">
-            <slot />
+        <div style="margin-top: 3rem">
+            {#if (loc && (loc.pathname == '/' || loc.pathname == '/login' || loc.pathname == '/signup')) || $authStore.currentUser}
+                <slot />
+            {:else}
+                <div style="padding: 2rem">
+                    <h2>You must login to continue</h2>
+                    <Button color="secondary" variant="raised" on:click={() => {loc.href='/login'}}>
+                        <Label>Login</Label>
+                    </Button>
+                </div>
+            {/if}
         </div>
     </DrawerAppContent>
 </main>

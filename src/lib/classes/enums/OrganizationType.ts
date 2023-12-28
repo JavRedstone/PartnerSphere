@@ -6,3 +6,12 @@ export class OrganizationType {
     public static readonly RELIGIOUS = 'Religious';
     public static readonly INDIVIDUAL = 'Individual';
 }
+
+export const organizationTypes = [
+    OrganizationType.NONPROFIT,
+    OrganizationType.FORPROFIT,
+    OrganizationType.GOVERNMENT,
+    OrganizationType.EDUCATIONAL,
+    OrganizationType.RELIGIOUS,
+    OrganizationType.INDIVIDUAL
+];
