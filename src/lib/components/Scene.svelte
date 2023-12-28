@@ -36,7 +36,7 @@
   let createdPNEMeshes: boolean = false;
   function createPNEMeshes(): void {
     for (let pne of $partnerNameElements) {
-      let geometry = new BoxGeometry(0.1, 0.1, 0.1);
+      let geometry = new IcosahedronGeometry(0.1, 0);
       let material = new MeshStandardMaterial({ color: 'blue' });
       let mesh = new Mesh(geometry, material);
       mesh.position.copy(pne.position);
