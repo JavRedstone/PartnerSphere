@@ -378,17 +378,17 @@
       {#if currentPage !== 0}
         <IconButton
           class="material-icons"
-          action="prev-page"
-          title="Prev page"
-          on:click={() => currentPage--}
-          >chevron_left</IconButton
-        >
-        <IconButton
-          class="material-icons"
           action="first-page"
           title="First page"
           on:click={() => (currentPage = 0)}
           >first_page</IconButton
+        >
+        <IconButton
+          class="material-icons"
+          action="prev-page"
+          title="Prev page"
+          on:click={() => currentPage--}
+          >chevron_left</IconButton
         >
       {/if}
       {#if currentPage !== lastPage}
