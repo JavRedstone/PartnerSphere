@@ -3,7 +3,7 @@
     import Scene from './Scene.svelte';
     import { PartnerNameElem } from '$lib/classes/structs/PartnerNameElem';
     import { partnerNameElements, partners } from '$lib/stores/partnerStore';
-  import { Vector3 } from 'three';
+    import { Vector3 } from 'three';
 
     let labelParent: HTMLDivElement;
     $: if ($partners && labelParent) {

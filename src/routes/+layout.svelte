@@ -157,7 +157,7 @@
         <DrawerContent>
             <List>
                 {#each drawerListItems as item}
-                    <ListItem href={item.route} on:click={() => {drawerOpen = !drawerOpen; listActive = item}} selected={listActive === item}>
+                    <ListItem href={item.route} on:click={() => {drawerOpen = !drawerOpen; listActive = item}} selected={listActive.route === item.route}>
                         <ListGraphic>
                             <Icon class="material-symbols-outlined">{item.icon}</Icon>
                         </ListGraphic>

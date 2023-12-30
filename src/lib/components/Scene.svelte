@@ -33,17 +33,17 @@
   light.position.set( 0, 0, 0 );
   scene.add( light );
 
-  let createdPNEMeshes: boolean = false;
-  function createPNEMeshes(): void {
-    for (let pne of $partnerNameElements) {
-      let geometry = new IcosahedronGeometry(0.1, 0);
-      let material = new MeshStandardMaterial({ color: 'blue' });
-      let mesh = new Mesh(geometry, material);
-      mesh.position.copy(pne.position);
-      scene.add(mesh);
-    }
-    createdPNEMeshes = true;
-  }
+  // let createdPNEMeshes: boolean = false;
+  // function createPNEMeshes(): void {
+  //   for (let pne of $partnerNameElements) {
+  //     let geometry = new IcosahedronGeometry(0.1, 0);
+  //     let material = new MeshStandardMaterial({ color: 'blue' });
+  //     let mesh = new Mesh(geometry, material);
+  //     mesh.position.copy(pne.position);
+  //     scene.add(mesh);
+  //   }
+  //   createdPNEMeshes = true;
+  // }
 
   function updateEffects(camera: Camera): void {
       let renderPass: RenderPass = new RenderPass(scene, camera);
@@ -106,7 +106,7 @@
   }
 
   $: if (camera && scene) updateRenderPass($camera, $size);
-  $: if ($partnerNameElements.length > 0 && !createdPNEMeshes) createPNEMeshes();
+  // $: if ($partnerNameElements.length > 0 && !createdPNEMeshes) createPNEMeshes();
 
   onMount(() => {
       render();
