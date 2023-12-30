@@ -30,11 +30,11 @@
     :global(::-webkit-scrollbar-thumb) {
         border-radius: 3px;
 
-        background-color: #00000040;
+        background-color: #ffffff40;
     }
 
     :global(::-webkit-scrollbar-thumb:hover) {
-        background-color: #00000080
+        background-color: #ffffff80
     }
 
     :global(.center-layout) {
