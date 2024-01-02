@@ -313,7 +313,15 @@
       </Select>
     </div>
     <div>
-      <TextField style="width: calc(100vw - 4rem)" type="text" label={"Search " + searchField} bind:value={searchValue}></TextField>
+      {#if searchField !== 'Organization Type'}
+        <TextField style="width: calc(100vw - 4rem)" type="text" label={"Search " + searchField} bind:value={searchValue}></TextField>
+      {:else}
+        <Select style="width: 100%" bind:value={searchValue} label="Organization Type" hiddenInput input$name="Organization Type">
+          {#each organizationTypes as ot}
+            <Option value={ot}>{ot}</Option>
+          {/each}
+        </Select>
+      {/if}
     </div>
     <Button color="secondary" variant="outlined" style="margin: 1rem; margin-left: 0" type="submit">
       <Label>Search</Label>
