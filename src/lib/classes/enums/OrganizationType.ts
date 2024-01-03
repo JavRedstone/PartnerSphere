@@ -1,3 +1,9 @@
+/*
+ * @author Javier Huang
+ */
+
+// types of organization
+
 export class OrganizationType {
     public static readonly NONPROFIT = 'Nonprofit';
     public static readonly FORPROFIT = 'For-profit';
@@ -7,6 +13,7 @@ export class OrganizationType {
     public static readonly INDIVIDUAL = 'Individual';
 }
 
+// list of organization types
 export const organizationTypes = [
     OrganizationType.NONPROFIT,
     OrganizationType.FORPROFIT,

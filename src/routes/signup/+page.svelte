@@ -2,6 +2,10 @@
     <title>Partner Sphere | Sign Up</title>
 </svelte:head>
 <script lang="ts">
+    /*
+     * @author Javier Huang
+    */
+    
 	import type { UserCredential } from "firebase/auth";
 	import { authHandlers } from "$lib/stores/authStore";
 
@@ -16,6 +20,7 @@
 	import { DocumentReference, setDoc } from "firebase/firestore";
     import type { DocumentData } from "firebase/firestore";
 	import { getFirestoreDoc } from "$lib/firebase/firebase";
+    // sign up 
     function signup(): void {
         try {
             authHandlers.signup(email, password).then(
@@ -25,11 +30,13 @@
                         () => {
                             authHandlers.verifyEmail(credential.user).then(
                                 () => {
+                                    // redirect to login page, after sending verification email
                                     window.location.href = '/login';
-                                    sendSnackbarMessage('Signed up successfully. Please check your email for a verification link.')
+                                    sendSnackbarMessage('Signed up successfully. Please check your email for a verification link.');
                                 }
                             ).catch(
                                 (error: any) => {
+                                    // error sending verification email
                                     sendSnackbarMessage('Error sending email verification. Please try again.');
                                 }
                             );
@@ -38,6 +45,7 @@
                 }
             ).catch(
                 (error: any) => {
+                    // catch errors from firebase auth
                     if (error.code === 'auth/email-already-in-use') {
                         sendSnackbarMessage('This email is already in use. Please try again.');
                     }
@@ -60,6 +68,8 @@
             sendSnackbarMessage('Error signing up. Please try again.');
         }
     }
+    
+    // send a snackbar message
     function sendSnackbarMessage(message: string): void {
         snackbarMessage = message;
         snackbar.open();

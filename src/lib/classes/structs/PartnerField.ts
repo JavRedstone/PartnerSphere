@@ -1,3 +1,8 @@
+/*
+ * @author Javier Huang
+ */
+
+// fields for the partner forms
 export class PartnerField {
     public name: string;
     public key: string;

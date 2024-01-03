@@ -1,6 +1,10 @@
-import type { OrganizationType } from "../enums/OrganizationType";
+/*
+ * @author Javier Huang
+ */
+
 import { StringHelper } from "../helpers/StringHelper";
 
+// the Partner class is a struct that represents a partner
 export class Partner {
     public id: string;
     public uid: string;

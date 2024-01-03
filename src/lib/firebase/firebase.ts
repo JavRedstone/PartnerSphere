@@ -1,16 +1,13 @@
-// Import the functions you need from the SDKs you need
+/*
+ * @author Javier Huang
+ */
+
 import { deleteApp, getApp, getApps, initializeApp, type FirebaseApp } from "firebase/app";
-import { getAnalytics, type Analytics } from "firebase/analytics";
-import { getAuth, setPersistence, inMemoryPersistence, type Auth } from 'firebase/auth';
+import { getAuth, type Auth } from 'firebase/auth';
 import { collection, doc, getFirestore, type DocumentData, DocumentReference, CollectionReference } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
 import * as env from '$env/static/public';
 
+// firebase configuration with environment variables
 const firebaseConfig: any = {
     apiKey: env.PUBLIC_FIREBASE_API_KEY,
     authDomain: env.PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -32,11 +29,13 @@ if (!getApps().length) {
 }
 
 export const auth: Auth = getAuth(firebaseApp);
-
+// get database
 let db = getFirestore(firebaseApp);
+// get collection
 export function getFirestoreCollection(c: string): CollectionReference<DocumentData, DocumentData> {
     return collection(db, c);
 }
+// get document
 export function getFirestoreDoc(c: string, d: string): DocumentReference<DocumentData, DocumentData> {
     return doc(db, c, d);
 }

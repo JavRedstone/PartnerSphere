@@ -1,5 +1,10 @@
+/*
+ * @author Javier Huang
+ */
+
 import { PartnerField } from "../structs/PartnerField";
 
+// fields of Partner object with their display names, html input types, and whether they are required
 export const partnerFields = [
     new PartnerField('Name', 'name', 'text', true),
     new PartnerField('Description', 'description', 'text', false),
@@ -11,6 +16,7 @@ export const partnerFields = [
     new PartnerField('Website', 'website', 'url', false)
 ];
 
+// fields of Partner object with their display names
 export const partnerFieldsBasic = [
     "Name",
     "Description",

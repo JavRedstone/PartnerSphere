@@ -1,4 +1,8 @@
 <script lang="ts">
+    /*
+     * @author Javier Huang
+    */
+
     import Button, { Label } from "@smui/button";
     import bg from "$lib/assets/background.png";
 </script>

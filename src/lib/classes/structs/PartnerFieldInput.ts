@@ -1,3 +1,8 @@
+/*
+ * @author Javier Huang
+ */
+
+// field input values and error messages for partner forms
 export class PartnerFieldInput {
     public key: string;
     public value: string;

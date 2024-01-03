@@ -1,3 +1,8 @@
+/*
+ * @author Javier Huang
+ */
+
+// item representing a list item in the drawer and the header of the page
 export class DrawerListItem {
     public text: string;
     public secondaryText: string;

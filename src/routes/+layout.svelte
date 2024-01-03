@@ -42,6 +42,10 @@
     }
 </style>
 <script lang="ts">
+    /*
+     * @author Javier Huang
+    */
+
     // Theme
     import '$lib/styles/themes/smui-dark.css';
 
@@ -84,6 +88,7 @@
     onMount(() => {
         loc = window.location;
 
+        // listen for auth state changes, and update the auth store accordingly
         auth.onAuthStateChanged(
             (user: User | null) => {
                 if (user != null) {
@@ -97,6 +102,7 @@
                         }
                     });
 
+                    // Get the user's partners
                     let partnersCollection = getFirestoreCollection('partners');
                     partners.set([]);
                     getDocs(query(partnersCollection, where("uid", "==", $authStore.currentUser.uid))).then(
@@ -113,7 +119,7 @@
                         }
                     ).catch(
                         (error: any) => {
-                            sendSnackbarMessage('Error getting workshops. Please try again later.');
+                            sendSnackbarMessage('Error getting partners. Please try again later.');
                         }
                     );
                 } else {
@@ -122,6 +128,8 @@
             }
         );
     });
+
+    // logout
     function logout(): void {
         try {
             authHandlers.logout().then(
@@ -139,6 +147,8 @@
             sendSnackbarMessage('Error logging out. Please try again.')                
         }
     }
+
+    // send a snackbar message
     function sendSnackbarMessage(message: string): void {
         snackbar.close();
         snackbarMessage = message;

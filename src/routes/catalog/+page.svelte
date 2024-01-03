@@ -283,6 +283,7 @@
     }
   }
   
+  // send a snackbar message
   function sendSnackbarMessage(message: string): void {
     snackbar.close();
     snackbarMessage = message;

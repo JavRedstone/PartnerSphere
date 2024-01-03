@@ -1,10 +1,15 @@
 <script lang="ts">
+    /*
+     * @author Javier Huang
+     */
+
     import { Canvas } from '@threlte/core';
     import Scene from './Scene.svelte';
     import { PartnerNameElem } from '$lib/classes/structs/PartnerNameElem';
     import { partnerNameElements, partners } from '$lib/stores/partnerStore';
     import { Vector3 } from 'three';
 
+    // Generate the 2d labels for the partners
     let labelParent: HTMLDivElement;
     $: if ($partners && labelParent) {
         let pne: PartnerNameElem[] = [];
@@ -19,7 +24,7 @@
             elem.style.userSelect = 'none';
             elem.innerHTML = partner.name;
             labelParent.appendChild(elem);
-            // random point on unit sphere
+            // random point on unit sphere - normalize a random position vector in 3d space
             let position: Vector3 = new Vector3(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1).normalize();
             pne.push(new PartnerNameElem(position, elem, partner));
         }

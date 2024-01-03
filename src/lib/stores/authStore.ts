@@ -1,13 +1,17 @@
+/*
+ * @author Javier Huang
+ */
+
 import { writable } from "svelte/store";
 import { auth } from "$lib/firebase/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendEmailVerification, type User, type UserCredential } from "firebase/auth";
-
+// auth store for svelte
 export const authStore = writable({
     isLoading: true,
     currentUser: null,
     userDoc: null
 });
-
+// auth handlers for firebase
 export const authHandlers = {
     signup: async function (email: string, password: string): Promise<UserCredential> {
         return await createUserWithEmailAndPassword(auth, email, password);

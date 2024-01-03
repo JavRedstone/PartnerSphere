@@ -1,14 +1,19 @@
 <script lang="ts">
+  /*
+   * @author Javier Huang
+   */
+
   import { partnerNameElements } from '$lib/stores/partnerStore';
   import { T, useThrelte, type ThrelteContext, useTask, type Size } from '@threlte/core';
   import { OrbitControls } from '@threlte/extras';
-  import { BlendFunction, BloomEffect, EffectComposer, EffectPass, GodRaysEffect, KernelSize, RenderPass } from 'postprocessing';
+  import { BlendFunction, EffectComposer, EffectPass, GodRaysEffect, KernelSize, RenderPass } from 'postprocessing';
   import { onMount } from 'svelte';
   import { Vector3, type Camera, Mesh, MeshStandardMaterial, IcosahedronGeometry, PointLight, BoxGeometry } from 'three';
 
   const TC: ThrelteContext = useThrelte();
   const { scene, renderer, camera, size, autoRender, renderStage } = TC;
 
+  // set up the effect composer for the godrays effect
   let effectComposer: EffectComposer = new EffectComposer(renderer);
   setupEffectComposer();
 
@@ -24,6 +29,7 @@
       );
   }
 
+  // create a sun and light for the godrays effect
   let sunGeometry = new IcosahedronGeometry(0.1, 3);
   let sunMaterial = new MeshStandardMaterial({ color: 'white', emissive: 'white' });
   let sunMesh = new Mesh(sunGeometry, sunMaterial);
@@ -31,31 +37,11 @@
   scene.add(sunMesh);
   const light = new PointLight( 'white', 1, 100 );
   light.position.set( 0, 0, 0 );
-  scene.add( light );
+  scene.add(light);
 
-  // let createdPNEMeshes: boolean = false;
-  // function createPNEMeshes(): void {
-  //   for (let pne of $partnerNameElements) {
-  //     let geometry = new IcosahedronGeometry(0.1, 0);
-  //     let material = new MeshStandardMaterial({ color: 'blue' });
-  //     let mesh = new Mesh(geometry, material);
-  //     mesh.position.copy(pne.position);
-  //     scene.add(mesh);
-  //   }
-  //   createdPNEMeshes = true;
-  // }
-
+  // update the effect composer when the camera changes
   function updateEffects(camera: Camera): void {
       let renderPass: RenderPass = new RenderPass(scene, camera);
-      // const bloomEffect: BloomEffect = new BloomEffect({
-      //     blendFunction: BlendFunction.SCREEN,
-      //     luminanceThreshold: 0,
-      //     luminanceSmoothing: 0.25,
-      //     intensity: 1,
-      //     kernelSize: KernelSize.HUGE,
-      // });
-      // let bloomEffectPass: EffectPass = new EffectPass(camera, bloomEffect);
-      // bloomEffectPass.renderToScreen = true;
 
       const godraysEffect: GodRaysEffect = new GodRaysEffect(camera, sunMesh, {
           blendFunction: BlendFunction.SCREEN,
@@ -82,11 +68,13 @@
       effectComposer.setSize(size.width, size.height);
   }
   
+  // update the render pass when the camera or size changes
   function updateRenderPass(camera: Camera, size: Size): void {
       updateEffects(camera);
       updateComposerSize(size);
   }
 
+  // make the partner name elements rotate along with the sphere
   function updateLabels(camera: Camera) {
     let tempV = new Vector3();
     for (let pne of $partnerNameElements) {
@@ -106,7 +94,6 @@
   }
 
   $: if (camera && scene) updateRenderPass($camera, $size);
-  // $: if ($partnerNameElements.length > 0 && !createdPNEMeshes) createPNEMeshes();
 
   onMount(() => {
       render();

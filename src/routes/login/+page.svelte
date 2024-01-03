@@ -2,6 +2,10 @@
     <title>Partner Sphere | Login</title>
 </svelte:head>
 <script lang="ts">
+    /*
+     * @author Javier Huang
+    */
+
 	import type { UserCredential } from "firebase/auth";
 	import { authHandlers } from "$lib/stores/authStore";
 
@@ -24,6 +28,7 @@
                         let userDoc: DocumentReference<DocumentData, DocumentData> = getFirestoreDoc('users', credential.user.uid);
                         setDoc(userDoc, { email: credential.user.email, uid: credential.user.uid, emailVerified: credential.user.emailVerified }).then(
                             () => {    
+                                // redirect to catalog page on successful login
                                 window.location.href = '/catalog';
                                 sendSnackbarMessage('Logged in successfully. Welcome back!');
                             }
@@ -35,6 +40,7 @@
                 }
             ).catch(
                 (error: any) => {
+                    // catch errors from firebase auth
                     if (error.code === 'auth/invalid-email') {
                         sendSnackbarMessage('Email is invalid. Please try again.');
                     }
@@ -57,6 +63,8 @@
             sendSnackbarMessage('Error logging in. Please try again.');
         }
     }
+
+    // send a snackbar message
     function sendSnackbarMessage(message: string): void {
         snackbar.close();
         snackbarMessage = message;
