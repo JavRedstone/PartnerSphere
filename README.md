@@ -1,18 +1,29 @@
-# create-svelte
+# PartnerSphere Project [&copy; Javier Huang 2024]
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+# Hosted URL using Cloudflare Pages: https://partner-sphere.pages.dev/
 
-## Creating a project
+## General Structure
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Frontend: Svelte web application
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+- Svelte version 4.2.8
+- Recommended IDE: Visual Studio Code
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+### Backend & Database: Firebase Cloud Firestore
+
+## Credit
+
+### References
+
+- Material Design: https://material.angular.io/
+- Material Icons: https://fonts.google.com/icons
+- Firebase: https://firebase.google.com/
+- PDFMake Tutorial Code: https://github.com/pandeysoni/pdfmake/blob/master/src/App.js [https://pandeysoni.medium.com/how-to-generate-pdf-file-using-pdfmake-module-660509799461]
+
+### Libraries Used
+
+*For all libraries used for the frontend code, please check the `package.json` file under the `source_code/frontend/` folder.*
+*For all plugins used for the backend code, please check the `pom.xml` file under the `source_code/backend/ramsevents/` folder.*
 
 ## Developing
 
@@ -34,5 +45,3 @@ npm run build
 ```
 
 You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
