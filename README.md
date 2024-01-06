@@ -7,6 +7,7 @@
 ### Frontend: Svelte web application
 
 - Svelte version 4.2.8
+- Svelte Material UI - All Elements
 - Recommended IDE: Visual Studio Code
 
 ### Backend & Database: Firebase Cloud Firestore
@@ -15,15 +16,9 @@
 
 ### References
 
-- Material Design: https://material.angular.io/
-- Material Icons: https://fonts.google.com/icons
+- Svelte Material UI (SMUI) documentation: https://sveltematerialui.com/
+- Threlte documentation: https://threlte.xyz
 - Firebase: https://firebase.google.com/
-- PDFMake Tutorial Code: https://github.com/pandeysoni/pdfmake/blob/master/src/App.js [https://pandeysoni.medium.com/how-to-generate-pdf-file-using-pdfmake-module-660509799461]
-
-### Libraries Used
-
-*For all libraries used for the frontend code, please check the `package.json` file under the `source_code/frontend/` folder.*
-*For all plugins used for the backend code, please check the `pom.xml` file under the `source_code/backend/ramsevents/` folder.*
 
 ## Developing
 
