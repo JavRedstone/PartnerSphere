@@ -24,7 +24,7 @@
 
 *For all libraries used for the frontend code, please check the `package.json` file*  
 
-## Developing
+## Deployment
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
