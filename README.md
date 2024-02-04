@@ -24,9 +24,9 @@
 
 *For all libraries used for the frontend code, please check the `package.json` file*  
 
-## Deployment
+## Running the project
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), run the project:
 
 ```bash
 npm run dev
@@ -37,7 +37,7 @@ npm run dev -- --open
 
 ## Building
 
-To create a production version of your app:
+To create a production version of the app:
 
 ```bash
 npm run build
